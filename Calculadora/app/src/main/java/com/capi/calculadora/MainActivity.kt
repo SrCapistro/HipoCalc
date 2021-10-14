@@ -1,11 +1,13 @@
 package com.capi.calculadora
 
+import android.icu.text.DecimalFormat
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import java.math.RoundingMode
 import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
@@ -30,8 +32,11 @@ class MainActivity : AppCompatActivity() {
                 val toast = Toast.makeText(applicationContext,mensaje,duration)
                 toast.show()
             }else{
+                val dec = DecimalFormat("#.##")
+
                 resultado = calcularHipotenusa(inputLadoA.text.toString(), inputLadoB.text.toString())
-                outputResultado.setText(resultado.toString())
+                val result = dec.format(resultado)
+                outputResultado.setText(result.toString())
             }
         }
 
